@@ -1,0 +1,21 @@
+version: '2.2'
+services:
+  angular-frontend:
+    image: node:16
+    working_dir: /app
+    volumes:
+      - ./angular-frontend:/app
+    ports:
+      - "4200:4200"
+    command: sh -c "npm install && ng serve --host 0.0.0.0"
+
+  streamlit-backend:
+    image: python:3.9
+    working_dir: /app
+    volumes:
+      - ./python-backend:/app
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: sh -c "pip install -r requirements.txt && streamlit run streamlit_app.py"

@@ -1,0 +1,10 @@
+version: '2.2'
+services:
+  angular-frontend:
+    image: node:16
+    working_dir: /app
+    volumes:
+      - ./angular-frontend:/app
+    ports:
+      - "4200:4200"
+    command: sh -c "npm install && ng serve --host 0.0.0.0"
